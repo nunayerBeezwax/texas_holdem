@@ -68,9 +68,11 @@ class Table < ActiveRecord::Base
 	end
 
 	def winner 
+		results = {}
 		self.players.each do |player|
-			player.compute_hand
-		end		
+			results.merge! player.id => player.compute_hand
+		end
+		results
 	end
 
 	def clear
