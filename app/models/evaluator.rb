@@ -1,74 +1,75 @@
 class Evaluator
 
+	ENGLISH = { 1 => "Ace", 2 => "Two", 3 => "Three", 4 => "Four", 
+				5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 
+				9 => "Nine", 10 => "Ten", 11 => "Jack", 12 => "Queen", 
+				13 => "King", 14 => "Ace" }
+
+	HAND_TYPES = { 1 => 'high_card', 2 => 'pair', 3 => 'two_pair', 4 => 'three_of_a_kind',
+				   5 => 'straight', 6 => 'flush', 7 => 'full_house', 8 => 'four_of_a_kind',
+				   9 => 'straight_flush' }
+
+	STRAIGHTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].each_cons(5)
+
+
 	def Evaluator.make_best(hand)
 		score = 0
-		best_hand = { 1 => 'high_card', 2 => 'pair', 3 => 'two_pair', 4 => 'three_of_a_kind',
-					  5 => 'straight', 6 => 'flush', 7 => 'full_house', 8 => 'four_of_a_kind',
-					  9 => 'straight_flush' }
-
-		best_hand.each do |key, value|
-			x = eval("self.#{value}(hand)")
-			if x == true
+		Evaluator::HAND_TYPES.each do |key, value|
+			if eval("self.#{value}(hand)") == true
 				score = key
 			end
 		end
-		best_hand[score]
+		display_evaluation(best_hand[score], hand)
+	end
+
+	def self.ranks(hand)
+		hand.map { |c| c.rank == 1 ? 14 : c.rank }
+	end
+
+	def self.multiples(ranks)
+		rank_counts = []
+		ranks.each { |num| rank_counts << ranks.count(num) }
+		rank_counts
+	end
+
+	def self.suits(hand)
+		hand.map { |c| c.suit }
+	end
+
+	def self.display_evaluation(type, hand)
+		case type
+		when 'high_card'
+			Evaluator::ENGLISH[ranks(hand).sort.last] + " High"
+		end
 	end
 
 	def self.high_card(hand)
-		hand.sort_by { |card| card.rank }
 		true
 	end
 
 	def self.pair(hand)
-		hand.each do |card|
-			if hand.any? { |c| card.rank == c.rank && card != c }
-				return true
-			end
-		end
-		false
+		multiples(ranks(hand)).include?(2)
 	end
 
 	def self.two_pair(hand)
-		pairs = 0
-		13.times do |i|
-			if hand.count { |card| card.rank == i + 1 } == 2
-				pairs += 1
-			end
-		end
-		pairs >= 2
+		multiples(ranks(hand)).count(2) >= 4
 	end
 
 	def self.three_of_a_kind(hand)
-		13.times do |i|
-			if hand.count { |card| card.rank == i + 1 } == 3
-				return true
-			end
-		end
-		false
+		multiples(ranks(hand)).include?(3)
 	end
 
 	def self.straight(hand)
-		temp_hand = hand.clone
-		temp_hand.sort_by! { |card| card.rank }
-		temp_hand.uniq! { |card| card.rank }
-		if temp_hand.length == 5
-			if (temp_hand[0].rank - temp_hand[4].rank).abs == 4
-				return true
-			end
-		elsif temp_hand.length == 6
-			if (temp_hand[1].rank - temp_hand[5].rank).abs == 4 ||
-				 (temp_hand[0].rank - temp_hand[4].rank).abs == 4
-				return true
-			end
-		elsif temp_hand.length == 7
-			if (temp_hand[0].rank - temp_hand[4].rank).abs == 4 ||
-				 (temp_hand[1].rank - temp_hand[5].rank).abs == 4 ||
-				 (temp_hand[2].rank - temp_hand[6].rank).abs == 4
-				return true
-			end
+		ranks = ranks(hand).sort.uniq
+		if ranks[0..3] == [2, 3, 4, 5] && ranks.include?(14)
+			true
+		elsif ranks.count == 5
+			STRAIGHTS.include?(ranks)
+		elsif ranks.count == 6
+			STRAIGHTS.include?(ranks[0..4]) || STRAIGHTS.include?(ranks[1..5])
+		elsif ranks.count == 7
+			STRAIGHTS.include?(ranks[0..4]) || STRAIGHTS.include?(ranks[1..5]) || STRAIGHTS.include?(ranks[2..6])
 		end
-		false
 	end
 
 	def self.flush(hand)
@@ -80,54 +81,15 @@ class Evaluator
 	end
 
 	def self.full_house(hand)
-		trips = 0
-		pairs = 0
-		13.times do |i|
-			if hand.count { |card| card.rank == i + 1 } == 3
-				trips += 1
-			end
-			if hand.count { |card| card.rank == i + 1 } == 2
-				pairs += 1
-			end
-		end
-		trips >= 1 && pairs >= 1 || trips == 2
+		multiples(ranks(hand)).include?(3) && multiples(ranks(hand)).include?(2)
 	end
 
 	def self.four_of_a_kind(hand)
-    13.times do |i|
-    	if hand.count { |card| card.rank == i + 1 } == 4
-    		return true
-    	end
-    end
-    false		
+		multiples(ranks(hand)).include?(4)
 	end
 
 	def self.straight_flush(hand)
-		straight = false
-		temp_hand = hand.clone
-		temp_hand.sort_by! { |card| card.rank }
-		temp_hand.uniq! { |card| card.rank }
-		if temp_hand.length == 5
-			if (temp_hand[0].rank - temp_hand[4].rank).abs == 4
-				straight = true
-			end
-		elsif temp_hand.length == 6
-			if (temp_hand[1].rank - temp_hand[5].rank).abs == 4 ||
-				 (temp_hand[0].rank - temp_hand[4].rank).abs == 4
-				straight = true
-			end
-		elsif temp_hand.length == 7
-			if (temp_hand[0].rank - temp_hand[4].rank).abs == 4 ||
-				 (temp_hand[1].rank - temp_hand[5].rank).abs == 4 ||
-				 (temp_hand[2].rank - temp_hand[6].rank).abs == 4
-				straight = true
-			end
-		end
-		if straight == true 
-			if temp_hand.count { |card| card.suit } == 5
-				return true
-			end
-		end
-	false
+		## slightly flawed
+		flush(hand) && straight(hand)		
 	end
 end
