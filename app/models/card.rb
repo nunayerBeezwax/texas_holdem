@@ -1,10 +1,5 @@
-class Card
-	attr_reader :suit, :rank, :pic, :index
+class Card < ActiveRecord::Base
 	
-	def initialize(attributes)
-		@index = attributes[:index]
-		@suit = attributes[:suit]
-		@rank = attributes[:rank]
-		@pic = attributes[:pic]
-	end
+	has_and_belongs_to_many :tables
+	has_and_belongs_to_many :players
 end

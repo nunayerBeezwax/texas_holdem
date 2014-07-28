@@ -20,7 +20,7 @@ class TablesController < ApplicationController
 	end	
 
 	def flop
-		@table = Table.new
+		@table = Table.find(params[:id])
 		respond_to do |f|
 			f.html {}
 			f.json { render :json => @table.flop }
@@ -28,7 +28,7 @@ class TablesController < ApplicationController
 	end	
 
 	def turn
-		@table = Table.new
+		@table = Table.find(params[:id])
 		respond_to do |f|
 			f.html {}
 			f.json { render :json => @table.turn }
@@ -36,7 +36,7 @@ class TablesController < ApplicationController
 	end	
 
 	def river
-		@table = Table.new
+		@table = Table.find(params[:id])
 		respond_to do |f|
 			f.html {}
 			f.json { render :json => @table.river }

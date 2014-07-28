@@ -1,25 +1,36 @@
 class Table < ActiveRecord::Base
 
 	has_and_belongs_to_many :players
+	has_and_belongs_to_many :cards
 
 	attr_reader :deck, :board
 	after_create :setup 
 
 	def setup
 		@board = []
-		@deck = Deck.new
 		10.times { self.players << Player.create({name: Faker::Name.first_name, chips: 1000}) }
 	end
 
 	def deal
+		i = 0
 		the_deal = []
-		20.times {the_deal << Deck.new.cards.shift}
+		until self.cards.count == 20
+			card = Card.find(rand(1..52))
+			if !self.cards.include?(card)
+				self.cards << card
+				the_deal << card
+				self.players[i].cards << card
+				if self.players[i].cards.count == 2
+					i += 1
+				end
+			end
+		end
 		the_deal
 	end	
 
 	def flop
 		the_deal = []
-		23.times {the_deal << @deck.cards.shift}
+		3.times {the_deal << @deck.cards.shift}
 		the_deal
 	end	
 

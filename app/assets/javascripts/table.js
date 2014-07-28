@@ -19,7 +19,7 @@ $(document).ready(function(){
 
   $('.footer #flop').click(function(){
     $.ajax({
-        url:"/tables/flop.json",
+        url:"/api"+pathname+"/flop.json",
         type:"GET", 
         success: function(data){
           $('.board').toggleClass('active');
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
   $('.footer #turn').click(function(){
     $.ajax({
-        url:"/tables/turn.json",
+        url:"/api"+pathname+"/turn.json",
         type:"GET", 
         success: function(data){
           $('.hands span').toggleClass('active');
@@ -49,7 +49,7 @@ $(document).ready(function(){
 
   $('.footer #river').click(function(){
 		$.ajax({
-  			url:"/tables/river.json",
+  			url:"/api"+pathname+"/river.json",
   			type:"GET", 
   			success: function(data){
           $('.hands span').toggleClass('active');

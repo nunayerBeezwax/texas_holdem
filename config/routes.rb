@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   scope :api do 
     get 'tables/:id/deal(.:format)' => 'tables#deal'
+    get 'tables/:id/flop(.:format)' => 'tables#flop'
+    get 'tables/:id/turn(.:format)' => 'tables#turn'
+    get 'tables/:id/river(.:format)' => 'tables#river'
   end
 
   get '/tables/flop' => 'tables#flop'
