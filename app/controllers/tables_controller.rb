@@ -42,4 +42,12 @@ class TablesController < ApplicationController
 			f.json { render :json => @table.river }
 		end
 	end
+
+	def clear
+		@table = Table.find(params[:id])
+		respond_to do |f|
+			f.html {}
+			f.json { render :json => @table.clear}
+		end
+	end
 end

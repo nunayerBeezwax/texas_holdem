@@ -1,8 +1,8 @@
 $(document).ready(function(){
+  var pathname = window.location.pathname
 
   //Dealing the Cards...
   $('.footer #deal').click(function(){
-    var pathname = window.location.pathname
     $.ajax({
         url:"/api"+pathname+"/deal.json",
         type:"GET", 
@@ -48,16 +48,28 @@ $(document).ready(function(){
   });	
 
   $('.footer #river').click(function(){
-		$.ajax({
-  			url:"/api"+pathname+"/river.json",
-  			type:"GET", 
-  			success: function(data){
+    $.ajax({
+        url:"/api"+pathname+"/river.json",
+        type:"GET", 
+        success: function(data){
           $('.hands span').toggleClass('active');
           for (i=0; i<data.length; i++) {
             var card = i+1;
             var move = (data[i].index * -100).toString();
             $('#card'+card.toString()).css("background-position-y", move+"px");
           }
+        }
+    });
+  });
+
+  $('.footer #clear').click(function(){
+		$.ajax({
+  			url:"/api"+pathname+"/clear.json",
+  			type:"GET", 
+  			success: function(data){
+          $('.hands span').toggleClass('active'),
+          $('.board').toggleClass('active'),
+          alert("Success, all clear!")
         }
     });
   });

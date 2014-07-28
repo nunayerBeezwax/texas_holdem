@@ -30,7 +30,10 @@ class Table < ActiveRecord::Base
 
 	def flop
 		the_deal = []
-		3.times {the_deal << @deck.cards.shift}
+		until the_deal.length == 3 
+			card = Card.find(rand(1..52))
+			the_deal << card unless self.cards.include?(card)
+		end
 		the_deal
 	end	
 
@@ -41,4 +44,9 @@ class Table < ActiveRecord::Base
 	def river
 		@deck.cards.shift
 	end	
+
+	def clear
+		self.cards = []
+		self.players.each {|p| p.cards = []}
+	end
 end

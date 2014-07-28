@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'tables/:id/flop(.:format)' => 'tables#flop'
     get 'tables/:id/turn(.:format)' => 'tables#turn'
     get 'tables/:id/river(.:format)' => 'tables#river'
+    get 'tables/:id/clear(.:format)' => 'tables#clear'
   end
 
   get '/tables/flop' => 'tables#flop'
