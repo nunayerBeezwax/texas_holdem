@@ -38,11 +38,21 @@ class Table < ActiveRecord::Base
 	end	
 
 	def turn
-		@deck.cards.shift
+		the_deal = []
+		until the_deal.length == 1 
+			card = Card.find(rand(1..52))
+			the_deal << card unless self.cards.include?(card)
+		end
+		the_deal
 	end	
 
 	def river
-		@deck.cards.shift
+		the_deal = []
+		until the_deal.length == 1 
+			card = Card.find(rand(1..52))
+			the_deal << card unless self.cards.include?(card)
+		end
+		the_deal	
 	end	
 
 	def clear

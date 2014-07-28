@@ -22,7 +22,9 @@ $(document).ready(function(){
         url:"/api"+pathname+"/flop.json",
         type:"GET", 
         success: function(data){
-          $('.board').toggleClass('active');
+          $('#board1').toggleClass('active');
+          $('#board2').toggleClass('active');
+          $('#board3').toggleClass('active');
           for (i=0; i<data.length; i++) {
             var card = i+1;
             var move = (data[i].index * -100).toString();
@@ -37,12 +39,9 @@ $(document).ready(function(){
         url:"/api"+pathname+"/turn.json",
         type:"GET", 
         success: function(data){
-          $('.hands span').toggleClass('active');
-          for (i=0; i<data.length; i++) {
-            var card = i+1;
-            var move = (data[i].index * -100).toString();
-            $('#card'+card.toString()).css("background-position-y", move+"px");
-          }
+          $('#board4').toggleClass('active');
+          var move = (data[0].index * -100).toString();
+          $('#board4').css("background-position-y", move+"px");
         }
     });
   });	
@@ -52,12 +51,9 @@ $(document).ready(function(){
         url:"/api"+pathname+"/river.json",
         type:"GET", 
         success: function(data){
-          $('.hands span').toggleClass('active');
-          for (i=0; i<data.length; i++) {
-            var card = i+1;
-            var move = (data[i].index * -100).toString();
-            $('#card'+card.toString()).css("background-position-y", move+"px");
-          }
+          $('#board5').toggleClass('active');
+          var move = (data[0].index * -100).toString();
+          $('#board5').css("background-position-y", move+"px");
         }
     });
   });
@@ -68,7 +64,7 @@ $(document).ready(function(){
   			type:"GET", 
   			success: function(data){
           $('.hands span').toggleClass('active'),
-          $('.board').toggleClass('active'),
+          $('.board span').toggleClass('active'),
           alert("Success, all clear!")
         }
     });

@@ -57,7 +57,6 @@ body {
 
 .board {
 	position: absolute;
-	display:none;
 	top:225px;
 	left:280px;
 	height:96px;
@@ -187,23 +186,23 @@ body {
 }
 
 #board1 {
-	
+	display:none;
 }
 
 #board2 {
-	
+	display:none;
 }
 
 #board3 {
-	
+	display:none;
 }
 
 #board4 {
-	
+	display:none;
 }
 
 #board5 {
-	
+	display:none;
 }
 
 .seat {
