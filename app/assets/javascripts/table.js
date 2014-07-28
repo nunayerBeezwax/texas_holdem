@@ -59,13 +59,23 @@ $(document).ready(function(){
   });
 
   $('.footer #clear').click(function(){
+    $.ajax({
+        url:"/api"+pathname+"/clear.json",
+        type:"GET", 
+        success: function(data){
+          $('.hands span').toggleClass('active');
+          $('.board span').toggleClass('active');
+        
+      }
+    });
+  });
+
+  $('.footer #winner').click(function(){
 		$.ajax({
-  			url:"/api"+pathname+"/clear.json",
+  			url:"/api"+pathname+"/winner.json",
   			type:"GET", 
   			success: function(data){
-          $('.hands span').toggleClass('active'),
-          $('.board span').toggleClass('active'),
-          alert("Success, all clear!")
+          //replace player chips with string of what hand they have 
         }
     });
   });
