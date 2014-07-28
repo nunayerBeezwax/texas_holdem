@@ -1,0 +1,295 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+html {
+	background: #222222;
+}
+
+body {
+	width: 100%;	
+	text-align:center;
+}
+
+.game {
+	width:960px;
+	margin:0 auto;
+	position: relative;
+}
+
+.active {
+	display:inline !important;
+}
+
+.footer {
+	margin:0 auto;
+	width: 960px;
+	height: 200px;
+	background: #555555;
+}
+
+.footer button {
+	height: 40px;
+	width: 100px;
+	border: 2px solid gray;
+	border-radius:4px;
+	font-size:16px;
+	font-weight:bold;
+	font-family:Helvetica;
+	padding: 10px;
+	margin:10px;
+	display:inline-block;
+	float:left;
+}
+
+.footer button:hover {
+	color: white;
+	background: #444444;
+}
+
+#table {
+	position:relative;
+	height:600px;
+	background-image: url('POKER-TABLE.jpg');
+	background-size:100%;
+}
+
+.board {
+	position: absolute;
+	display:none;
+	top:225px;
+	left:280px;
+	height:96px;
+	width:390px;
+}
+
+.board span {
+	position:relative;
+	float:left;
+	margin-left:5px;
+	width:72px;
+	height:96px;
+	background-image: url("deck-sprite.png");
+	background-size:100%;
+}
+
+.hands {
+	position:absolute;
+	display:inline;
+}
+
+.hands span {
+	position:absolute;
+	display:none;
+	width:55px;
+	height:75px;
+	background-image: url("hand-sprite.png");
+	background-size:100%;	
+}
+
+#card1 {
+	top:78px;
+	right:399px;
+}
+
+#card2 {
+	top:78px;
+	right:340px;
+}
+
+#card3 {
+	right:218px;
+}
+
+#card4 {
+	right:160px;
+}
+
+#card5 {
+	right:7px;
+}
+
+#card6 {
+	right:-52px;
+}
+
+#card7 {
+	left:162px;
+}
+
+#card8 {
+	left:219px;
+}
+
+#card9 {
+	top:78px;
+	left:340px;
+}
+
+#card10 {
+	top:78px;
+	left:399px;
+}
+
+#card11 {
+	top:304px;
+	left:340px;
+}
+
+#card12 {
+	top:304px;
+	left:399px;
+}
+
+#card13 {
+	top:384px;
+	left:162px;
+}
+
+#card14 {
+	top:384px;
+	left:219px;
+}
+
+#card15 {
+	right:7px;
+	top:384px;
+}
+
+#card16 {
+	right:-52px;
+	top:384px;
+}
+
+#card17 {
+	top:384px;
+	right:218px;
+}
+
+#card18 {
+	top:384px;
+	right:160px;
+}
+
+#card19 {
+	top:304px;
+	right:399px;
+}
+
+#card20 {
+	top:304px;
+	right:340px;
+}
+
+.board span.active {
+	display:block;
+}
+
+#board1 {
+	
+}
+
+#board2 {
+	
+}
+
+#board3 {
+	
+}
+
+#board4 {
+	
+}
+
+#board5 {
+	
+}
+
+.seat {
+	position: absolute;
+	color: #fff;
+	line-height: 1.5em;
+	background:rgba(3,3,3,0.7);
+	width:120px;
+	height:85px;
+	border-radius: 10px;
+	border:2px solid white;
+	padding-top:5px;
+}
+
+.seat .avatar {
+	position: absolute;
+	width:35px;
+	height:35px;
+	margin-left:-61px;
+	border-radius:5px;
+	border:1px solid white;
+}
+
+.seat .clock {
+	position: absolute;
+	width:82px;
+	height:35px;
+	margin-left:-24px;
+	border-radius:5px;
+	border:1px solid white;
+}
+
+/* this will need to change to who the action is on */
+.seat:hover {
+	box-shadow: 0 0 65px #fff;
+	opacity: 1;
+}
+
+#seat1 {
+	top: 150px;
+	left: 20px;
+}
+
+#seat2 {
+	top:70px;
+	left:200px;
+}
+
+#seat3 {
+	top:70px;
+	left:410px;
+}
+
+#seat4 {
+	top:70px;
+	right:200px;
+}
+
+#seat5 {
+	top:150px;
+	right:20px;
+}
+
+#seat6 {
+	bottom:130px;
+	right:20px;
+}
+
+#seat7 {
+	bottom:50px;
+	right:200px;
+}
+
+#seat8 {
+	bottom:50px;
+	left:410px;
+}
+
+#seat9 {
+	bottom:50px;
+	left:200px;
+}
+
+#seat10 {
+	bottom:130px;
+	left:20px;
+}
+
+

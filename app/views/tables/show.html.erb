@@ -1,0 +1,53 @@
+
+
+<body>
+
+	<div class="game">
+		<div id="table">
+			<% @table.players.each_with_index do |player, i| %> 
+				<div class="seat" id="seat<%="#{i+1}"%>"><h4><%= player.name %></h4><p><%= player.chips %></p><span class="avatar">A</span><span class="clock">C</span></div>
+			<% end %>
+
+			<div class="board">
+				<span id="board1"></span>
+				<span id="board2"></span>
+				<span id="board3"></span>
+				<span id="board4"></span>
+				<span id="board5"></span>
+			</div>
+
+			<div class="hands">
+				<span id="card1"></span>
+				<span id="card2"></span>
+				<span id="card3"></span>
+				<span id="card4"></span>
+				<span id="card5"></span>
+				<span id="card6"></span>
+				<span id="card7"></span>
+				<span id="card8"></span>
+				<span id="card9"></span>
+				<span id="card10"></span>
+				<span id="card11"></span>
+				<span id="card12"></span>
+				<span id="card13"></span>
+				<span id="card14"></span>
+				<span id="card15"></span>
+				<span id="card16"></span>
+				<span id="card17"></span>
+				<span id="card18"></span>
+				<span id="card19"></span>
+				<span id="card20"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<button id="deal">Deal</button>
+		<button id="flop">Flop</button>
+		<button id="turn">Turn</button>
+		<button id="river">River</button>
+	</div>
+	
+
+
+</body>
