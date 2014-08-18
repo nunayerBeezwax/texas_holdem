@@ -73,7 +73,7 @@ class TablesController < ApplicationController
 		end
 		respond_to do |f|
 			f.html{}
-			f.json { render :json => player, :include => :seats}
+			f.json { render :json => player, :include => :seat}
 		end
 	end
 end

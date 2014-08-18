@@ -10,7 +10,7 @@ $(document).ready(function(){
       data: JSON.stringify({seat: this.id}),
       success: function(data){
         console.log(data)
-        var seat = data.seats.slice(-1)[0].number;
+        var seat = data.seat.number;
         $('span#sit'+seat).css("display","none");
         $('#seat'+seat).html("<h4>"+data.name+"</h4>"+"<p>"+data.chips+"</p>");
       }
@@ -22,6 +22,12 @@ $(document).ready(function(){
         url:"/api"+pathname+"/deal.json",
         type:"GET", 
         success: function(data){
+          $.each(data,function(key, value){
+            console.log(key);
+            value.forEach(function(object) {
+              console.log(object.index);
+            })
+          })
           $('.hands span').toggleClass('active');
           for (i=0; i<data.length; i++) {
             var card = i+1;

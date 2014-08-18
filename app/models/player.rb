@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
 
-	has_many :seats
-	has_many :tables, through: :seats
+	has_one :seat
+	has_one :table, through: :seat
 	has_and_belongs_to_many :cards
 
 	def sit(t, s)

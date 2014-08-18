@@ -20,10 +20,8 @@ class Table < ActiveRecord::Base
 	end
 
 	def deal
-		players_in_hand = get_active_players
-		#button
-		i = button+1 || 0
-		until self.cards.count == players_in_hand.count*2
+		i = 0
+		until self.cards.count == self.players.count*2
 			card = Card.find(rand(1..52))
 			if !self.cards.include?(card)
 				self.cards << card
@@ -39,7 +37,7 @@ class Table < ActiveRecord::Base
 	def json_deal
 		deal = {}
 		self.players.each do |player|
-			deal.merge!(player => [player.cards[0], player.cards[1]])
+			deal.merge!(player.seat.number => [player.cards[0], player.cards[1]])
 		end
 		deal
 	end
