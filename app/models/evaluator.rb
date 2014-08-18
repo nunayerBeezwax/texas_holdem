@@ -1,5 +1,7 @@
 class Evaluator
 
+	### Constants
+
 	ENGLISH = { 1 => "Ace", 2 => "Two", 3 => "Three", 4 => "Four", 
 				5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 
 				9 => "Nine", 10 => "Ten", 11 => "Jack", 12 => "Queen", 
@@ -19,8 +21,30 @@ class Evaluator
 				score = key
 			end
 		end
-		display_evaluation(best_hand[score], hand)
+		best_hand[score]
 	end
+
+	### Human-friendly best hand description for display to screen
+
+	def self.display_evaluation(hand)
+		type = make_best(hand)
+		case type
+		when 'high_card'
+			Evaluator::ENGLISH[ranks(hand).sort.last] + " High"
+		when 'pair'
+		when 'two_pair'
+		when 'three_of_a_kind'
+		when 'straight'
+		when 'flush'
+		when 'full_house'
+		when 'four_of_a_kind'
+		when 'straight_flush'
+		end
+	end
+
+	### TODO: Construct machine-friendly hand-weighting system for payouts
+
+	### Hand && Card data extraction toolkit
 
 	def self.ranks(hand)
 		hand.map { |c| c.rank == 1 ? 14 : c.rank }
@@ -36,12 +60,7 @@ class Evaluator
 		hand.map { |c| c.suit }
 	end
 
-	def self.display_evaluation(type, hand)
-		case type
-		when 'high_card'
-			Evaluator::ENGLISH[ranks(hand).sort.last] + " High"
-		end
-	end
+	### Boolean results of hand type discovery in hand token
 
 	def self.high_card(hand)
 		true

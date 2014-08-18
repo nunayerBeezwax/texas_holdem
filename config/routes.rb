@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'tables/:id/river(.:format)' => 'tables#river'
     get 'tables/:id/clear(.:format)' => 'tables#clear'
     get 'tables/:id/winner(.:format)' => 'tables#winner'
+    post 'tables/:id/sit(.:format)' => 'tables#take_seat'
   end
   
   resources :tables

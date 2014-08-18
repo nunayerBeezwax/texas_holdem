@@ -87,6 +87,20 @@ body {
 	background-size:100%;	
 }
 
+.sit-buttons {
+	color:#fff;
+	position:absolute;
+	display:inline;
+	width:40px;
+	height:40px;
+	background-color:#ddd;
+}
+
+#sit1 {
+	right:399px;
+	top:78px;
+}
+
 #card1 {
 	top:78px;
 	right:399px;

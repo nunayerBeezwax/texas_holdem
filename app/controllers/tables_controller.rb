@@ -63,4 +63,16 @@ class TablesController < ApplicationController
 			f.json { render :json => @table.clear}
 		end
 	end
+
+	def take_seat
+		find_model
+		player = Player.order("RANDOM()").first
+		if !(@table.players.include? player)
+			player.sit(@table, params['seat'].gsub(/[^\d]/, '').to_i)
+		end
+		respond_to do |f|
+			f.html{}
+			f.json { render :json => player}
+		end
+	end
 end

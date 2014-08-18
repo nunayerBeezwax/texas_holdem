@@ -1,7 +1,20 @@
 $(document).ready(function(){
   var pathname = window.location.pathname
 
-  //Dealing the Cards...
+  $('.sit-buttons').click(function() {
+    $.ajax({
+      type:"POST",
+      url:"/api"+pathname+"/sit.json",
+      contentType: 'application/json',
+      datatype: 'json',
+      data: JSON.stringify({seat: this.id}),
+      success: function(data){
+        console.log(data);
+        console.log(seat)
+      }
+    });
+  });
+
   $('.footer #deal').click(function(){
     $.ajax({
         url:"/api"+pathname+"/deal.json",

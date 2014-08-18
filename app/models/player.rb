@@ -1,7 +1,12 @@
 class Player < ActiveRecord::Base
 
-	has_and_belongs_to_many :tables
+	has_many :seats
+	has_many :tables, through: :seats
 	has_and_belongs_to_many :cards
+
+	def sit(t, s)	
+		Seat.create(number: s, table_id: t.id, player_id: self.id)
+	end
 
 	def compute_hand
 		hand = []

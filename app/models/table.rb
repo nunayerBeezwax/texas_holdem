@@ -1,32 +1,48 @@
 class Table < ActiveRecord::Base
 
-	has_and_belongs_to_many :players
-	has_and_belongs_to_many :cards
 	has_one :board
+	has_one :button
+	has_one :pot
+	has_and_belongs_to_many :cards
+	has_many :seats
+	has_many :players, through: :seats
 
 	after_create :setup 
 
 	def setup
 		self.board = Board.create
-		10.times { self.players << Player.create({name: Faker::Name.first_name, chips: 1000}) }
+		self.pot = Pot.create
+		self.button = Button.create
+	end
+
+	def get_active_players
+		self.players.select{|p| p.chips > 0}
 	end
 
 	def deal
-		i = 0
-		the_deal = []
-		until self.cards.count == 20
+		players_in_hand = get_active_players
+		#button
+		i = button+1 || 0
+		until self.cards.count == players_in_hand.count*2
 			card = Card.find(rand(1..52))
 			if !self.cards.include?(card)
 				self.cards << card
-				the_deal << card
 				self.players[i].cards << card
 				if self.players[i].cards.count == 2
 					i += 1
 				end
 			end
 		end
-		the_deal
+		json_deal
 	end	
+
+	def json_deal
+		deal = {}
+		self.players.each do |player|
+			deal.merge!(player => [player.cards[0], player.cards[1]])
+		end
+		deal
+	end
 
 	def flop
 		the_deal = []
