@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var pathname = window.location.pathname
 
-  $('.sit-buttons').click(function() {
+  $('.seat').click(function() {
     $.ajax({
       type:"POST",
       url:"/api"+pathname+"/sit.json",
@@ -9,8 +9,10 @@ $(document).ready(function(){
       datatype: 'json',
       data: JSON.stringify({seat: this.id}),
       success: function(data){
-        console.log(data);
-        console.log(seat)
+        console.log(data)
+        var seat = data.seats.slice(-1)[0].number;
+        $('span#sit'+seat).css("display","none");
+        $('#seat'+seat).html("<h4>"+data.name+"</h4>"+"<p>"+data.chips+"</p>");
       }
     });
   });

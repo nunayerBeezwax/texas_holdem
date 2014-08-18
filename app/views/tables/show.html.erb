@@ -2,20 +2,9 @@
 
 	<div class="game">
 		<div id="table">
-			<% @table.players.each_with_index do |player, i| %> 
-				<div class="seat" id="seat<%="#{i+1}"%>"><h4><%= player.name %></h4><p><%= player.chips %></p><span class="avatar">A</span><span class="clock">C</span></div>
-			<% end %>
-
-			<span class="sit-buttons" id="sit1">Sit</span>			
-			<span class="sit-buttons" id="sit2">Sit</span>			
-			<span class="sit-buttons" id="sit3">Sit</span>			
-			<span class="sit-buttons" id="sit4">Sit</span>			
-			<span class="sit-buttons" id="sit5">Sit</span>			
-			<span class="sit-buttons" id="sit6">Sit</span>			
-			<span class="sit-buttons" id="sit7">Sit</span>			
-			<span class="sit-buttons" id="sit8">Sit</span>			
-			<span class="sit-buttons" id="sit9">Sit</span>			
-			<span class="sit-buttons" id="sit10">Sit</span>			
+			<% 1.upto(10) do |i| %> 
+				<div class="seat" id="seat<%="#{i}"%>"><span id="sit<%="#{i}"%>">Sit</span></div>
+			<% end %>		
 
 			<div class="board">
 				<span id="board1"></span>

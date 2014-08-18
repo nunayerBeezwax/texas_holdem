@@ -87,20 +87,6 @@ body {
 	background-size:100%;	
 }
 
-.sit-buttons {
-	color:#fff;
-	position:absolute;
-	display:inline;
-	width:40px;
-	height:40px;
-	background-color:#ddd;
-}
-
-#sit1 {
-	right:399px;
-	top:78px;
-}
-
 #card1 {
 	top:78px;
 	right:399px;
@@ -225,28 +211,72 @@ body {
 	line-height: 1.5em;
 	background:rgba(3,3,3,0.7);
 	width:120px;
-	height:85px;
+	height:50px;
 	border-radius: 10px;
 	border:2px solid white;
 	padding-top:5px;
 }
 
-.seat .avatar {
-	position: absolute;
-	width:35px;
-	height:35px;
-	margin-left:-61px;
-	border-radius:5px;
-	border:1px solid white;
+.sit-buttons {
+	color:#fff;
+	position:absolute;
+	display:inline;
+	line-height: 1.5em;
+	width:120px;
+	height:50px;
+	border-radius: 10px;
+	border: 2px solid white;
+	background-color:rgba(3,3,3,0.7);
 }
 
-.seat .clock {
-	position: absolute;
-	width:82px;
-	height:35px;
-	margin-left:-24px;
-	border-radius:5px;
-	border:1px solid white;
+#sit1 {
+	top: 150px;
+	left: 20px;
+}
+
+#sit2 {
+	top:70px;
+	left:200px;
+}
+
+#sit3 {
+	top:70px;
+	left:410px;
+}
+
+#sit4 {
+	top:70px;
+	right:200px;
+}
+
+#sit5 {
+	top:150px;
+	right:20px;
+}
+
+#sit6 {
+	bottom:130px;
+	right:20px;
+}
+
+#sit7 {
+	bottom:50px;
+	right:200px;
+}
+
+#sit8 {
+	bottom:50px;
+	left:410px;
+}
+
+#sit9 {
+	bottom:50px;
+	left:200px;
+}
+
+#sit10 {
+	bottom:130px;
+	left:20px;
 }
 
 /* this will need to change to who the action is on */

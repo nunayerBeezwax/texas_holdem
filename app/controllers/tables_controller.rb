@@ -66,13 +66,14 @@ class TablesController < ApplicationController
 
 	def take_seat
 		find_model
+		seat = params['seat'].gsub(/[^\d]/, '').to_i
 		player = Player.order("RANDOM()").first
 		if !(@table.players.include? player)
-			player.sit(@table, params['seat'].gsub(/[^\d]/, '').to_i)
+			player.sit(@table, seat)
 		end
 		respond_to do |f|
 			f.html{}
-			f.json { render :json => player}
+			f.json { render :json => player, :include => :seats}
 		end
 	end
 end

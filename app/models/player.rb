@@ -4,7 +4,8 @@ class Player < ActiveRecord::Base
 	has_many :tables, through: :seats
 	has_and_belongs_to_many :cards
 
-	def sit(t, s)	
+	def sit(t, s)
+		self.update(chips: 1000)	
 		Seat.create(number: s, table_id: t.id, player_id: self.id)
 	end
 
