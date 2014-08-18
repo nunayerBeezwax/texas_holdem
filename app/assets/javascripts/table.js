@@ -22,11 +22,12 @@ $(document).ready(function(){
         url:"/api"+pathname+"/deal.json",
         type:"GET", 
         success: function(data){
+          console.log(data)
           $.each(data,function(key, value){
-            console.log(key);
-            value.forEach(function(object) {
-              console.log(object.index);
-            })
+            var card1 = value[0].index * -100
+            var card2 = value[1].index * -100
+            $('#card'+(key*2-1)).css("background-position-y", card1+"px")
+            $('#card'+(key*2)).css("background-position-y", card2+"px")
           })
           $('.hands span').toggleClass('active');
           for (i=0; i<data.length; i++) {
