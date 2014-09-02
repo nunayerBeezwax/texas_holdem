@@ -12,7 +12,7 @@ $(document).ready(function(){
         console.log(data)
         var seat = data.seat.number;
         $('span#sit'+seat).css("display","none");
-        $('#seat'+seat).html("<h4>"+data.name+"</h4>"+"<p>"+data.chips+"</p>");
+        $('#seat'+seat).append("<h4>"+data.name+"</h4>"+"<p>"+data.chips+"</p>");
       }
     });
   });
@@ -26,15 +26,9 @@ $(document).ready(function(){
           $.each(data,function(key, value){
             var card1 = value[0].index * -100
             var card2 = value[1].index * -100
-            $('#card'+(key*2-1)).css("background-position-y", card1+"px")
-            $('#card'+(key*2)).css("background-position-y", card2+"px")
+            $('#card'+(key*2-1)).css("background-position-y", card1+"px").toggleClass('active')
+            $('#card'+(key*2)).css("background-position-y", card2+"px").toggleClass('active')
           })
-          $('.hands span').toggleClass('active');
-          for (i=0; i<data.length; i++) {
-            var card = i+1;
-            var move = (data[i].index * -100).toString();
-            $('#card'+card.toString()).css("background-position-y", move+"px");
-          }
         }
     });
   }); 
@@ -97,6 +91,7 @@ $(document).ready(function(){
   			url:"/api"+pathname+"/winner.json",
   			type:"GET", 
   			success: function(data){
+          console.log(data)
           //replace player chips with string of what hand they have 
         }
     });

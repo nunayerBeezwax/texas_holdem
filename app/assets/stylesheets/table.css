@@ -12,6 +12,17 @@ body {
 	text-align:center;
 }
 
+.button {
+	display:none;
+	width:30px;
+	height:30px;
+	background-image: url('button.jpg');
+	background-size:100%;
+	border-radius:20px;
+	position:absolute;
+	right:-8px;
+}
+
 .game {
 	width:960px;
 	margin:0 auto;
@@ -132,52 +143,52 @@ body {
 }
 
 #card11 {
-	top:304px;
+	top:340px;
 	left:340px;
 }
 
 #card12 {
-	top:304px;
+	top:340px;
 	left:399px;
 }
 
 #card13 {
-	top:384px;
+	top:414px;
 	left:162px;
 }
 
 #card14 {
-	top:384px;
+	top:414px;
 	left:219px;
 }
 
 #card15 {
 	right:7px;
-	top:384px;
+	top:414px;
 }
 
 #card16 {
 	right:-52px;
-	top:384px;
+	top:414px;
 }
 
 #card17 {
-	top:384px;
+	top:414px;
 	right:218px;
 }
 
 #card18 {
-	top:384px;
+	top:414px;
 	right:160px;
 }
 
 #card19 {
-	top:304px;
+	top:340px;
 	right:399px;
 }
 
 #card20 {
-	top:304px;
+	top:340px;
 	right:340px;
 }
 

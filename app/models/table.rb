@@ -13,6 +13,7 @@ class Table < ActiveRecord::Base
 		self.board = Board.create
 		self.pot = Pot.create
 		self.button = Button.create
+		self.button.on = self.players.map{|p| p.seat.number}.sample
 	end
 
 	def get_active_players
@@ -34,6 +35,14 @@ class Table < ActiveRecord::Base
 		json_deal
 	end	
 
+	def table_state
+		state = {}
+		state[:button] = self.button.on
+		state[:players] = self.players
+		state[:board] = self.board.cards
+		state
+	end
+
 	def json_deal
 		deal = {}
 		self.players.each do |player|
@@ -44,7 +53,7 @@ class Table < ActiveRecord::Base
 
 	def flop
 		the_deal = []
-		until self.cards.count == 23
+		until self.board.cards.count == 3
 			card = Card.find(rand(1..52))
 			if !self.cards.include?(card)
 				self.cards << card
@@ -57,7 +66,7 @@ class Table < ActiveRecord::Base
 
 	def turn
 		the_deal = []
-		until self.cards.count == 24 
+		until self.board.cards.count == 4 
 			card = Card.find(rand(1..52))
 			if !self.cards.include?(card)
 				self.cards << card
@@ -70,7 +79,7 @@ class Table < ActiveRecord::Base
 
 	def river
 		the_deal = []
-		until self.cards.count == 25 
+		until self.board.cards.count == 5 
 			card = Card.find(rand(1..52))
 			if !self.cards.include?(card)
 				self.cards << card

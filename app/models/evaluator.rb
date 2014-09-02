@@ -21,7 +21,7 @@ class Evaluator
 				score = key
 			end
 		end
-		best_hand[score]
+		HAND_TYPES[score]
 	end
 
 	### Human-friendly best hand description for display to screen
